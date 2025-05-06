@@ -1,4 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import ChartIcon from "./ChartIcon";
+import companyImgIcon from "../../assets/companyImgIcon.png";
+import actionImg1 from "../../assets/actionImg1.svg";
+import actionImg2 from "../../assets/actionImg2.svg";
 
 const Home = () => {
   const marketLinks = [
@@ -89,14 +93,35 @@ const Home = () => {
             </thead>
             <tbody className="text-gray-700">
               <tr className="bg-white shadow-sm rounded">
-                <td className="px-4 py-2">—</td>
-                <td className="px-4 py-2">—</td>
-                <td className="px-4 py-2 text-right">—</td>
+                <td className="px-4 py-2">
+                  <button
+                    href="/"
+                    className="w-[35px] h-[35px] rounded-lg border border-[#dee2e6] flex items-center justify-center"
+                  >
+                    <ChartIcon />
+                  </button>
+                </td>
+                <td className="px-4 py-2">
+                  <a href="/" className="flex gap-2 items-center">
+                    <img
+                      src={companyImgIcon}
+                      alt="company"
+                      className="w-[40px] h-[40px] rounded-[20px]"
+                    />
+                    <span>CCL</span>
+                  </a>
+                </td>
+                <td className="px-4 py-2 text-right">673.35</td>
                 <td className="px-4 py-2 text-center">—</td>
-                <td className="px-4 py-2 text-right">—</td>
-                <td className="px-4 py-2 text-right">—</td>
-                <td className="px-4 py-2 text-right">—</td>
-                <td className="px-4 py-2 text-right">—</td>
+                <td className="px-4 py-2 text-right text-[#00b865]">
+                  80.65 (13.61%)
+                </td>
+                <td className="px-4 py-2 text-right">592.70</td>
+                <td className="px-4 py-2 text-right">1,27,89,212</td>
+                <td className="px-4 py-2 text-right justify-end flex gap-3">
+                  <img src={actionImg1} alt="" />
+                  <img src={actionImg2} alt="" />
+                </td>
               </tr>
             </tbody>
           </table>
