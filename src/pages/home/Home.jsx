@@ -233,62 +233,70 @@ const Home = () => {
             </thead>
 
             <tbody className="text-gray-700">
-              {stockData.map((stock, index) => (
-                <tr key={index} className="bg-white shadow-sm rounded">
-                  <td className="px-4 py-2">
-                    <button
-                      href="/"
-                      className="w-[35px] h-[35px] rounded-lg border border-[#dee2e6] flex items-center justify-center"
-                    >
-                      <ChartIcon />
-                    </button>
-                  </td>
-                  <td className="px-4 py-2">
-                    <a href="/" className="flex gap-2 items-center">
-                      {/* <img
-                        src={companyLogos[stock.symbol]} // You can optionally replace this with stock-specific icon if available
-                        alt="company"
-                        className="w-[40px] h-[40px] rounded-[20px]"
-                      /> */}
-                      <span>{stock.symbol}</span>
-                    </a>
-                  </td>
-                  <td className="px-4 py-2 text-right">
-                    {stock.lastPrice?.toFixed(2) || "N/A"}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    <span className="text-red-500">
-                      {stock.dayLow?.toFixed(2)}
-                    </span>
-                    <span>{"<-->"}</span>
-                    <span className="text-[#00b865]">
-                      {stock.dayHigh?.toFixed(2)}
-                    </span>
-                  </td>
-                  <td
-                    className={`px-4 py-2 text-right ${
-                      stock.lastPrice - stock.previousClose >= 0
-                        ? "text-[#00b865]"
-                        : "text-red-600"
-                    }`}
-                  >
-                    {`${(stock.lastPrice - stock.previousClose).toFixed(
-                      2
-                    )} (${stock.pChange.toFixed(2)}%)`}
-                  </td>
-
-                  <td className="px-4 py-2 text-right">
-                    {stock.previousClose?.toFixed(2) || "N/A"}
-                  </td>
-                  <td className="px-4 py-2 text-right">
-                    {formatIndianNumber(stock.totalTradedVolume) || "N/A"}
-                  </td>
-                  <td className="px-4 py-2 text-right justify-end flex gap-3">
-                    <img src={actionImg1} alt="" />
-                    <img src={actionImg2} alt="" />
+              {loading ? (
+                <tr>
+                  <td colSpan="8" className="text-center py-4">
+                    Loading stock data...
                   </td>
                 </tr>
-              ))}
+              ) : (
+                stockData.map((stock, index) => (
+                  <tr key={index} className="bg-white shadow-sm rounded">
+                    <td className="px-4 py-2">
+                      <button
+                        href="/"
+                        className="w-[35px] h-[35px] rounded-lg border border-[#dee2e6] flex items-center justify-center"
+                      >
+                        <ChartIcon />
+                      </button>
+                    </td>
+                    <td className="px-4 py-2">
+                      <a href="/" className="flex gap-2 items-center">
+                        {/* Optional image */}
+                        {/* <img
+            src={companyLogos[stock.symbol]}
+            alt="company"
+            className="w-[40px] h-[40px] rounded-[20px]"
+          /> */}
+                        <span>{stock.symbol}</span>
+                      </a>
+                    </td>
+                    <td className="px-4 py-2 text-right">
+                      {stock.lastPrice?.toFixed(2) || "N/A"}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      <span className="text-red-500">
+                        {stock.dayLow?.toFixed(2)}
+                      </span>
+                      <span>{"<-->"}</span>
+                      <span className="text-[#00b865]">
+                        {stock.dayHigh?.toFixed(2)}
+                      </span>
+                    </td>
+                    <td
+                      className={`px-4 py-2 text-right ${
+                        stock.lastPrice - stock.previousClose >= 0
+                          ? "text-[#00b865]"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {`${(stock.lastPrice - stock.previousClose).toFixed(
+                        2
+                      )} (${stock.pChange.toFixed(2)}%)`}
+                    </td>
+                    <td className="px-4 py-2 text-right">
+                      {stock.previousClose?.toFixed(2) || "N/A"}
+                    </td>
+                    <td className="px-4 py-2 text-right">
+                      {formatIndianNumber(stock.totalTradedVolume) || "N/A"}
+                    </td>
+                    <td className="px-4 py-2 text-right justify-end flex gap-3">
+                      <img src={actionImg1} alt="" />
+                      <img src={actionImg2} alt="" />
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
